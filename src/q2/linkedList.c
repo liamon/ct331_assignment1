@@ -9,6 +9,37 @@ typedef struct listElementStruct{
   struct listElementStruct* next;
 } listElement;
 
+// Returns the number of elements in a linked list.
+int length(listElement* list) {
+  int lengthCounter = 0;
+  while (*list != NULL) {
+    lengthCounter++;
+    list = list->next;
+  }
+  return lengthCounter;
+}
+
+// Push a new element onto the head of a list.
+// Update the list reference using side effects.
+void push(listElement** list, char* data, size_t size) {
+  listElement* newElement = malloc(sizeof(listElement));
+  newElement->data = malloc(sizeof(char) * size);
+  strcpy(newElement->data, data);
+  // By dereferencing list once, it is now a pointer to an
+  // address which points to a listElement.
+  newElement->next = malloc(sizeof(listElement));
+  newElement->next = *list;
+  // By dereferencing it twice, it is now a pointer to a listElement.
+  listElement** list = newElement; // Side effects.
+}
+
+// Enqueue a new element onto the head of a list.
+// Update the list reference using side effects.
+void enqueue(listElement** list, char* data, size_t size) {
+  // This has the same effect as push, so...
+  push(list, data, size);
+}
+
 //Creates a new linked list element with given content of size
 //Returns a pointer to the element
 listElement* createEl(char* data, size_t size){
