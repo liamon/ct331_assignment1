@@ -25,8 +25,7 @@ void push(listElement** list, char* data, size_t size) {
   listElement* newElement = createEl(data, size);
   // By dereferencing list once, it is now a pointer to a listElement.
   newElement->next = *list;
-  // By dereferencing it twice, it is now a listElement.
-  **list = newElement; // Side effects.
+  *list = newElement; // Side effects.
 }
 
 // Pop an element from the head of a list.
