@@ -22,15 +22,19 @@ int length(listElement* list) {
 // Push a new element onto the head of a list.
 // Update the list reference using side effects.
 void push(listElement** list, char* data, size_t size) {
-  listElement* newElement = malloc(sizeof(listElement));
-  newElement->data = malloc(sizeof(char) * size);
-  strcpy(newElement->data, data);
-  // By dereferencing list once, it is now a pointer to an
-  // address which points to a listElement.
-  newElement->next = malloc(sizeof(listElement));
+  listElement* newElement = createEl(data, size);
+  // By dereferencing list once, it is now a pointer to a listElement.
   newElement->next = *list;
-  // By dereferencing it twice, it is now a pointer to a listElement.
-  listElement** list = newElement; // Side effects.
+  // By dereferencing it twice, it is now a listElement.
+  **list = newElement; // Side effects.
+}
+
+// Pop an element from the head of a list.
+// Update the list reference using side effects.
+listElement* pop(listElement** list) {
+  // TODO Check if I need to malloc this first.
+  listElement* poppedElement = *list; // TODO Should this be **list?
+  return poppedElement;
 }
 
 // Enqueue a new element onto the head of a list.
@@ -38,6 +42,24 @@ void push(listElement** list, char* data, size_t size) {
 void enqueue(listElement** list, char* data, size_t size) {
   // This has the same effect as push, so...
   push(list, data, size);
+}
+
+// Dequeue an element from the tail of the list.
+listElement* dequeue(listElement* list) {
+  listElement* currentElement = list;
+  // This will leave currentElement at the second-last element.
+  // TODO Check what happens if list < 2.
+  while (currentElement->next->next != NULL) {
+    currentElement = currentElement->next;
+  }
+
+  listElement* dequeuedElement = malloc(sizeof(listElement*));
+  dequeuedElement->data = malloc(sizeof(currentElement->next->*data));
+  strcpy(dequeuedElement->data, currentElement->next->data);
+  dequeuedElement->next = NULL;
+
+  deleteAfter(currentElement);
+  return dequeuedElement;
 }
 
 //Creates a new linked list element with given content of size
