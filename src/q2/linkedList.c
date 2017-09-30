@@ -53,20 +53,18 @@ void enqueue(listElement** list, char* data, size_t size) {
 
 // Dequeue an element from the tail of the list.
 listElement* dequeue(listElement* list) {
-  listElement* currentElement = list;
+  listElement* current = list;
   // This will leave currentElement at the second-last element.
   // TODO Check what happens if list < 2.
-  while (currentElement->next->next != NULL) {
-    currentElement = currentElement->next;
+  while (current->next->next != NULL) {
+    current = current->next;
   }
 
-  listElement* dequeuedElement = malloc(sizeof(listElement*));
-  dequeuedElement->data = malloc(sizeof(currentElement->next->*data));
-  strcpy(dequeuedElement->data, currentElement->next->data);
-  dequeuedElement->next = NULL;
+  // Creates a new element with the same values as the tail element.
+  listElement* dequeued = createEl(current->next->data, sizeof(current->next->*data));
 
   deleteAfter(currentElement);
-  return dequeuedElement;
+  return dequeued;
 }
 
 //Creates a new linked list element with given content of size
