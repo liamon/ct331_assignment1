@@ -33,8 +33,7 @@ void push(listElement** list, char* data, size_t size) {
 listElement* pop(listElement** list) {
   listElement* head = *list;
   // Create a new element with the same values as the first element.
-  listElement* poppedElement = createEl(head->data, sizeof(head->*data));
-
+  listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
   // The right hand side is a pointer to a pointer to the next
   // element after the head.
   list = &(head->next);
@@ -61,7 +60,7 @@ listElement* dequeue(listElement* list) {
   }
 
   // Creates a new element with the same values as the tail element.
-  listElement* dequeued = createEl(current->next->data, sizeof(current->next->*data));
+  listElement* dequeued = createEl(current->next->data, sizeof(*(current->next->data)));
 
   deleteAfter(current);
   return dequeued;
