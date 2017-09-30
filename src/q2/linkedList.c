@@ -12,7 +12,7 @@ typedef struct listElementStruct{
 // Returns the number of elements in a linked list.
 int length(listElement* list) {
   int lengthCounter = 0;
-  while (*list != NULL) {
+  while (list != NULL) {
     lengthCounter++;
     list = list->next;
   }
@@ -63,7 +63,7 @@ listElement* dequeue(listElement* list) {
   // Creates a new element with the same values as the tail element.
   listElement* dequeued = createEl(current->next->data, sizeof(current->next->*data));
 
-  deleteAfter(currentElement);
+  deleteAfter(current);
   return dequeued;
 }
 

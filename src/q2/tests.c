@@ -21,5 +21,7 @@ void runTests(){
   traverse(l);
   printf("\n");
 
+  printf("Liam's new tests running...\n\n");
+  
   printf("\nTests complete.\n");
 }
