@@ -22,6 +22,13 @@ void runTests(){
   printf("\n");
 
   printf("Liam's new tests running...\n\n");
+  traverse(NULL);
+  dequeue(l);
+  dequeue(l);
+  puts("Size 1.");
+  l = dequeue(l);
+  puts("Size 0.");
+  traverse(l);
   
   printf("\nTests complete.\n");
 }
