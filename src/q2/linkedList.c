@@ -42,11 +42,7 @@ listElement* pop(listElement** list) {
   listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
   // The right hand side is a pointer to a pointer to the next
   // element after the head.
-  if (length(*list) == 1) {
-    list = NULL; // Special case
-  } else {
-    list = &(head->next);
-  }
+  list = &(head->next);
 
   free(head->data);
   free(head);
