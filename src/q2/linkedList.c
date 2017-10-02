@@ -42,7 +42,11 @@ listElement* pop(listElement** list) {
   listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
   // The right hand side is a pointer to a pointer to the next
   // element after the head.
-  list = &(head->next);
+  if (length(*list) == 1) {
+    list = NULL; // Special case
+  } else {
+    list = &(head->next);
+  }
 
   free(head->data);
   free(head);
@@ -60,10 +64,14 @@ void enqueue(listElement** list, char* data, size_t size) {
 listElement* dequeue(listElement* list) {
   listElement* current = list;
   // This accounts for if there is no second-last element.
-  if (length(list) < 2) {
-    return pop(&list); // At this size, this has the same effect.
+  if (length(list) == 0) {
+    return NULL;
   }
-  
+  if (length(list) == 1) {
+    listElement* dequeued = createEl(current->data, sizeof(*(current->data)));
+    list = NULL;
+    return dequeued;
+  }
   // This will leave current at the second-last element.
   while (current->next->next != NULL) {
     current = current->next;

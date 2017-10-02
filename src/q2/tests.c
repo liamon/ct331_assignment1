@@ -25,9 +25,7 @@ void runTests(){
   traverse(NULL);
   dequeue(l);
   dequeue(l);
-  puts("Size 1.");
-  l = dequeue(l);
-  puts("Size 0.");
+  dequeue(l);
   traverse(l);
   
   printf("\nTests complete.\n");
