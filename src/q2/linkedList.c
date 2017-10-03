@@ -12,12 +12,11 @@ typedef struct listElementStruct{
 // Returns the number of elements in a linked list.
 int length(listElement* list) {
   int lengthCounter = 0;
-  listElement* head = list;
-  while (list != NULL) {
+  listElement* current = list; // This avoids side effects changing list.
+  while (current != NULL) {
     lengthCounter++;
-    list = list->next;
+    current = current->next;
   }
-  list = head; // Avoid having side effects from changing list.
   return lengthCounter;
 }
 
