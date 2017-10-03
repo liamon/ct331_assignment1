@@ -22,11 +22,11 @@ void runTests(){
   printf("\n");
 
   printf("Liam's new tests running...\n\n");
-  pop(&l);
-  traverse(l);
-  pop(&l);
-  traverse(l);
-  pop(&l);
-  traverse(l);
+  listElement* popped = pop(&l);
+  traverse(popped);
+  popped = pop(&l);
+  traverse(popped);
+  popped = pop(&l);
+  traverse(popped);
   printf("\nTests complete.\n");
 }

@@ -12,10 +12,12 @@ typedef struct listElementStruct{
 // Returns the number of elements in a linked list.
 int length(listElement* list) {
   int lengthCounter = 0;
+  listElement* head = list;
   while (list != NULL) {
     lengthCounter++;
     list = list->next;
   }
+  list = head; // Avoid having side effects from changing list.
   return lengthCounter;
 }
 
@@ -31,9 +33,10 @@ void push(listElement** list, char* data, size_t size) {
 // Pop an element from the head of a list.
 // Update the list reference using side effects.
 listElement* pop(listElement** list) {
-  // At these small sizes, these operations have the same effect.
-  if (length(*list) < 2) {
-    return dequeue(*list);
+  // The bulk of this method requires there to be at least one element, so
+  // I have to deal with the special case by returning the empty list.
+  if (length(*list) == 0) {
+    return *list;
   }
 
   listElement* head = *list;
