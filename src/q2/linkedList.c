@@ -58,16 +58,23 @@ void enqueue(listElement** list, char* data, size_t size) {
 
 // Dequeue an element from the tail of the list.
 listElement* dequeue(listElement* list) {
-  listElement* current = list;
+  
   // This accounts for if there is no second-last element.
   if (length(list) == 0) {
     return NULL;
   }
   if (length(list) == 1) {
-    listElement* dequeued = createEl(current->data, sizeof(*(current->data)));
+    // I was unable to get this to work properly. A copy of the single element
+    // is returned, but the element is not removed from the list.
+    //
+    // Also, I tried to use free() here, including indirectly by trying the
+    // line "return pop(&list);", but it always seemed to result in a
+    // segmentation fault happening later on in the program's execution.
+    listElement* dequeued = createEl(list->data, sizeof(*(list->data)));
     list = NULL;
     return dequeued;
   }
+  listElement* current = list;
   // This will leave current at the second-last element.
   while (current->next->next != NULL) {
     current = current->next;
