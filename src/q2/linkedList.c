@@ -31,18 +31,15 @@ void push(listElement** list, char* data, size_t size) {
 // Pop an element from the head of a list.
 // Update the list reference using side effects.
 listElement* pop(listElement** list) {
-  // The bulk of this method requires there to be at least one element, so
-  // I have to deal with the special case by returning NULL.
-  if (length(*list) == 0) {
-    return NULL;
+  // At these small sizes, these operations have the same effect.
+  if (length(*list) < 2) {
+    return dequeue(*list);
   }
 
   listElement* head = *list;
   // Create a new element with the same values as the first element.
   listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
-  // The right hand side is a pointer to a pointer to the next
-  // element after the head.
-  list = &(head->next);
+  *list = head->next;
 
   free(head->data);
   free(head);
