@@ -22,17 +22,14 @@ void runTests(){
   printf("\n");
 
   printf("Liam's new tests running...\n\n");
-  listElement* removed = dequeue(l);
-  puts("Next round.");
-  traverse(l);
-  traverse(removed);
-  removed = dequeue(l);
-  puts("Next round.");
-  traverse(l);
-  traverse(removed);
-  removed = dequeue(l);
-  puts("Next round.");
-  traverse(l);
-  traverse(removed);
+  // TODO
   printf("\nTests complete.\n");
+}
+
+void printTestResults(int isTestSuccess, char* testDescription) {
+  if (isTestSuccess) {
+    printf("%s: SUCCESS\n", testDescription);
+  } else {
+    printf("%s: FAILURE\n", testDescription);
+  }
 }
