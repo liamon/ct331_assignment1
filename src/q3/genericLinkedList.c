@@ -95,7 +95,7 @@ listElement* createEl(void* data, size_t size){
     //malloc has had an error
     return NULL; //return NULL to indicate an error.
   }
-  void* dataPointer = malloc(sizeof(void)*size);
+  void* dataPointer = malloc(sizeof(void*)*size);
   if(dataPointer == NULL){
     //malloc has had an error
     free(e); //release the previously allocated memory
