@@ -1,7 +1,11 @@
 #ifndef CT331_ASSIGNMENT_LINKED_LIST
 #define CT331_ASSIGNMENT_LINKED_LIST
 
-typedef struct listElementStruct listElement;
+typedef struct listElementStruct{
+  char* data;
+  size_t size;
+  struct listElementStruct* next;
+} listElement;
 
 // Returns the number of elements in a linked list.
 int length(listElement* list);

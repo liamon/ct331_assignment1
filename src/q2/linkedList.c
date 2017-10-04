@@ -3,12 +3,6 @@
 #include <string.h>
 #include "linkedList.h"
 
-typedef struct listElementStruct{
-  char* data;
-  size_t size;
-  struct listElementStruct* next;
-} listElement;
-
 // Returns the number of elements in a linked list.
 int length(listElement* list) {
   int lengthCounter = 0;
