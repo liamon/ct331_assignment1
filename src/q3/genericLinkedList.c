@@ -112,7 +112,7 @@ listElement* createEl(void* data, size_t size){
 void traverse(listElement* start){
   listElement* current = start;
   while(current != NULL){
-    printf("%s\n", current->data);
+    current->print(current->data);
     current = current->next;
   }
 }
