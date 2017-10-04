@@ -101,7 +101,7 @@ listElement* createEl(void* data, size_t size){
     free(e); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
   }
-  strcpy(dataPointer, data);
+  memmove(dataPointer, data, sizeof(void*) * size);
   e->data = dataPointer;
   e->size = size;
   e->next = NULL;
