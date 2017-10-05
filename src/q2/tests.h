@@ -13,9 +13,13 @@ int testPushToEmptyList();
 int testEnqueueToEmptyList();
 int testPushToExistingList();
 int testEnqueueToExistingList();
-
+//
 int testDequeueFromEmptyList();
 int testDequeueWhichEmptiesList();
 int testDequeue();
+//
+int testPopFromEmptyList();
+int testPopWhichEmptiesList();
+int testPop();
 
 #endif

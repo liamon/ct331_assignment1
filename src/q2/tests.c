@@ -32,6 +32,11 @@ void runTests(){
   printTestResults(&testDequeueFromEmptyList, "Dequeueing from an empty list");
   printTestResults(&testDequeueWhichEmptiesList, "Dequeueing and emptying a list");
   printTestResults(&testDequeue, "Dequeueing from a list of length >= 2");
+
+  printTestResults(&testPopFromEmptyList, "Popping from an empty list");
+  printTestResults(&testPopWhichEmptiesList, "Popping and emptying a list");
+  printTestResults(&testPop, "Popping from a list of length >= 2");
+
   
   printf("\nTests complete.\n");
 }
@@ -96,5 +101,30 @@ int testDequeue() {
 
   listElement* testReturn = dequeue(testList);
   return strcmp(testList->data, data2) == 0 && testList->next == NULL &&
-    strcmp(testReturn->data, data1) && testReturn->next == NULL;
+    strcmp(testReturn->data, data1) == 0 && testReturn->next == NULL;
+}
+
+int testPopFromEmptyList() {
+  listElement* empty = NULL;
+  listElement* testReturn = pop(&empty);
+  return empty == NULL && testReturn == NULL;
+}
+
+int testPopWhichEmptiesList() {
+  char* testData = "Only one element.";
+  listElement* testList = createEl(testData, sizeof(testData));
+  listElement* testReturn = pop(&testList);
+  return strcmp(testReturn->data, testData) == 0 && testReturn->next == NULL &&
+    testList == NULL;
+}
+
+int testPop() {
+  char* data1 = "First";
+  char* data2 = "Second";
+  listElement* testList = createEl(data1, sizeof(data1));
+  enqueue(&testList, data2, sizeof(data2));
+
+  listElement* testReturn = pop(&testList);
+  return strcmp(testList->data, data1) == 0 && testList->next == NULL &&
+    strcmp(testReturn->data, data2) == 0 && testReturn->next == NULL;
 }
