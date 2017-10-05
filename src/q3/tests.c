@@ -28,3 +28,7 @@ void printChar(void* charToPrint) {
 void printFloat(void* floatToPrint) {
   printf("%f\n", floatToPrint);
 }
+
+void printDouble(void* doubleToPrint) {
+  printf("%lf\n", doubleToPrint);
+}

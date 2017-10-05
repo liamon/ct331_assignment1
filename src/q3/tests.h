@@ -11,5 +11,6 @@ void printTestResults(testFunction test, char* testDescription);
 void printInt(void* intToPrint);
 void printChar(void* charToPrint);
 void printFloat(void* floatToPrint);
+void printDouble(void* doubleToPrint);
 
 #endif
