@@ -16,3 +16,15 @@ void printTestResults(testFunction test, char* testDescription) {
     printf("%s: FAILURE\n", testDescription);
   }
 }
+
+void printInt(void* intToPrint) {
+  printf("%d\n", intToPrint);
+}
+
+void printChar(void* charToPrint) {
+  printf("%c\n", charToPrint);
+}
+
+void printFloat(void* floatToPrint) {
+  printf("%f\n", floatToPrint);
+}
