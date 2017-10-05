@@ -9,8 +9,8 @@ void runTests(){
   printf("\nTests complete.\n");
 }
 
-void printTestResults(int isTestSuccess, char* testDescription) {
-  if (isTestSuccess) {
+void printTestResults(testFunction test, char* testDescription) {
+  if (test()) {
     printf("%s: SUCCESS\n", testDescription);
   } else {
     printf("%s: FAILURE\n", testDescription);
