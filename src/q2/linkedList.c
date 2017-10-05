@@ -34,12 +34,10 @@ listElement* pop(listElement** list) {
 
   listElement* head = *list;
   // Create a new element with the same values as the first element.
-  listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
+//  listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
   *list = head->next;
 
-  free(head->data);
-  free(head);
-  return poppedElement;
+  return head;
 }
 
 // Enqueue a new element onto the head of a list.
@@ -63,7 +61,7 @@ listElement* dequeue(listElement* list) {
     // Also, I tried to use free() here, including indirectly by trying the
     // line "return pop(&list);", but it always seemed to result in a
     // segmentation fault happening later on in the program's execution.
-    listElement* dequeued = createEl(list->data, sizeof(*(list->data)));
+    listElement* dequeued = list;
     list = NULL;
     return dequeued;
   }
