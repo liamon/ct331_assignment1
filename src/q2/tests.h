@@ -9,6 +9,9 @@ void runTests();
 void printTestResults(testFunction test, char* testDescription);
 //
 // The actual tests:
+int testLengthEmpty();
+int testLength();
+//
 int testPushToEmptyList();
 int testEnqueueToEmptyList();
 int testPushToExistingList();

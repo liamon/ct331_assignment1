@@ -23,6 +23,9 @@ void runTests(){
   printf("\n");
 
   printf("Liam's new tests running...\n\n");
+
+  printTestResults(&testLengthEmpty, "Checking length of empty lists");
+  printTestResults(&testLength, "Checking length of non-empty lists");
   
   printTestResults(&testPushToEmptyList, "Pushing to an empty list");
   printTestResults(&testEnqueueToEmptyList, "Enqueueing to an empty list");
@@ -47,6 +50,19 @@ void printTestResults(testFunction test, char* testDescription) {
   } else {
     printf("%s: FAILURE\n", testDescription);
   }
+}
+
+int testLengthEmpty() {
+  listElement* empty = NULL;
+  return length(empty) == 0;
+}
+
+int testLength() {
+  listElement* list = createEl("thing", sizeof("thing"));
+  int length1 = length(list);
+  push(&list, "new", sizeof("new"));
+  int length2 = length(list);
+  return length1 == 1 && length2 == 2;
 }
 
 int testPushToEmptyList() {
