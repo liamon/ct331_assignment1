@@ -89,7 +89,7 @@ listElement* dequeue(listElement* list) {
 
 //Creates a new linked list element with given content of size
 //Returns a pointer to the element
-listElement* createEl(void* data, size_t size){
+listElement* createEl(void* data, size_t size, printData print) {
   listElement* e = malloc(sizeof(listElement));
   if(e == NULL){
     //malloc has had an error
@@ -101,6 +101,7 @@ listElement* createEl(void* data, size_t size){
     free(e); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
   }
+  e->print = print;
   memmove(dataPointer, data, sizeof(void*) * size);
   e->data = dataPointer;
   e->size = size;

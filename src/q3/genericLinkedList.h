@@ -24,7 +24,7 @@ listElement* dequeue(listElement* list);
 
 //Creates a new linked list element with given content of size
 //Returns a pointer to the element
-listElement* createEl(char* data, size_t size);
+listElement* createEl(char* data, size_t size, printData print);
 
 //Prints out each element in the list
 void traverse(listElement* start);
