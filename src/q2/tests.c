@@ -24,16 +24,20 @@ void runTests(){
 
   printf("Liam's new tests running...\n\n");
   
-  printTestResults(testPushToEmptyList(), "Pushing to an empty list");
-  printTestResults(testEnqueueToEmptyList(), "Enqueueing to an empty list");
-  printTestResults(testPushToExistingList(), "Pushing to an existing list");
-  printTestResults(testEnqueueToExistingList(), "Enqueueing to an existing list");
+  printTestResults(&testPushToEmptyList, "Pushing to an empty list");
+  printTestResults(&testEnqueueToEmptyList, "Enqueueing to an empty list");
+  printTestResults(&testPushToExistingList, "Pushing to an existing list");
+  printTestResults(&testEnqueueToExistingList, "Enqueueing to an existing list");
+  
+  printTestResults(&testDequeueFromEmptyList, "Dequeueing from an empty list");
+  printTestResults(&testDequeueWhichEmptiesList, "Dequeueing and emptying a list");
+  printTestResults(&testDequeue, "Dequeueing from a list of length >= 2");
   
   printf("\nTests complete.\n");
 }
 
-void printTestResults(int isTestSuccess, char* testDescription) {
-  if (isTestSuccess) {
+void printTestResults(testFunction test, char* testDescription) {
+  if (test()) {
     printf("%s: SUCCESS\n", testDescription);
   } else {
     printf("%s: FAILURE\n", testDescription);
@@ -68,4 +72,29 @@ int testEnqueueToExistingList() {
   enqueue(&testList, testData, sizeof(testData));
   return strcmp(testData, testList->data) == 0 && testList->next != NULL &&
     strcmp("Test", testList->next->data) == 0 && testList->next->next == NULL;
+}
+
+int testDequeueFromEmptyList() {
+  listElement* testList = NULL;
+  listElement* testReturn = dequeue(testList);
+  return testList == NULL && testReturn == NULL;
+}
+
+int testDequeueWhichEmptiesList() {
+  char* testData = "Only one element.";
+  listElement* testList = createEl(testData, sizeof(testList));
+  listElement* testReturn = dequeue(testList);
+  return strcmp(testReturn->data, testData) == 0 && testReturn->next == NULL &&
+    testList == NULL;
+}
+
+int testDequeue() {
+  char* data1 = "First";
+  char* data2 = "Second";
+  listElement* testList = createEl(data1, sizeof(data1));
+  enqueue(&testList, data2, sizeof(data2));
+
+  listElement* testReturn = dequeue(testList);
+  return strcmp(testList->data, data2) == 0 && testList->next == NULL &&
+    strcmp(testReturn->data, data1) && testReturn->next == NULL;
 }
