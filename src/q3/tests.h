@@ -9,8 +9,10 @@ void runTests();
 void printTestResults(testFunction test, char* testDescription);
 //
 // The actual tests:
+int testPush();
 void testGenericness();
-
+//
+// These are printData variables:
 void printInt(void* intToPrint);
 void printChar(void* charToPrint);
 void printDouble(void* doubleToPrint);

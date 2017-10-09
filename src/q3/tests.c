@@ -6,6 +6,7 @@
 void runTests(){
   printf("Tests running...\n\n");
 
+  printTestResults(&testPush, "Push()");
   testGenericness();
 
   printf("\nTests complete.\n");
@@ -19,10 +20,33 @@ void printTestResults(testFunction test, char* testDescription) {
   }
 }
 
+// sizeof(string) will just return the size of the pointer/address, so I have
+// to use strlen in the tests below. strlen ignores '\0', so I have to + 1 to
+// include it. chars are one byte long, so I do not have to multiply this by anything.
+
+
+int testPush() {
+  genericListElement* list = NULL;
+  int testInt = 3891;
+  push(&list, &testInt, sizeof(int), &printInt);
+  char* testString = "A test.";
+  push(&list, &testString, strlen(testString) + 1, &printString);
+
+  if (strcmp((char*) list->data, testString) != 0) {
+    puts((char*) list->data); // TODO Fix this.
+  }
+  
+  // I was unable to get comparisons of function pointers to work properly, as
+  // dereferenced function pointers are automatically converted to pointers.
+  // See https://stackoverflow.com/a/2795596
+  return strcmp(list->data, testString) == 0 &&
+    *((int*) list->next->data) == testInt && list->next->next == NULL;
+}
+
 // I can't really tests the print versions with a boolean since their return
 // type is void, so I have to do it like this instead.
 void testGenericness() {
-  puts("Testing Genericness.");
+  puts("\nTesting Genericness:");
   
   char plusSign = '+';
   printf("Expected: %c\n", plusSign);
@@ -44,8 +68,6 @@ void testGenericness() {
 
   char* string = "This is a test.";
   printf("Expected: %s\n", string);
-  // sizeof(string) will just return the size of the pointer/address, so I have
-  // to use strlen. strlen ignores '\0', so I have to + 1 to include it.
   push(&list, &string, strlen(string) + 1, &printString);
   printf("Actual: ");
   list->print(list->data);
