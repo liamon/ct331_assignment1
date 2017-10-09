@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "genericLinkedList.h"
+#include "tests.c"
 
 void runTests(){
   printf("Tests running...\n");

@@ -16,8 +16,8 @@ int length(genericListElement* list) {
 
 // Push a new element onto the head of a list.
 // Update the list reference using side effects.
-void push(genericListElement** list, void* data, size_t size) {
-  genericListElement* newElement = createEl(data, size);
+void push(genericListElement** list, void* data, size_t size, printData print) {
+  genericListElement* newElement = createEl(data, size, print);
   // By dereferencing list once, it is now a pointer to a genericListElement.
   newElement->next = *list;
   *list = newElement; // Side effects.
@@ -34,7 +34,7 @@ genericListElement* pop(genericListElement** list) {
 
   genericListElement* head = *list;
   // Create a new element with the same values as the first element.
-  genericListElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
+  genericListElement* poppedElement = createEl(head->data, sizeof(*(head->data)), head->print);
   *list = head->next;
 
   free(head->data);
@@ -44,9 +44,9 @@ genericListElement* pop(genericListElement** list) {
 
 // Enqueue a new element onto the head of a list.
 // Update the list reference using side effects.
-void enqueue(genericListElement** list, void* data, size_t size) {
+void enqueue(genericListElement** list, void* data, size_t size, printData print) {
   // This has the same effect as push, so...
-  push(list, data, size);
+  push(list, data, size, print);
 }
 
 // Dequeue an element from the tail of the list.
@@ -63,7 +63,7 @@ genericListElement* dequeue(genericListElement* list) {
     // Also, I tried to use free() here, including indirectly by trying the
     // line "return pop(&list);", but it always seemed to result in a
     // segmentation fault happening later on in the program's execution.
-    genericListElement* dequeued = createEl(list->data, sizeof(*(list->data)));
+    genericListElement* dequeued = createEl(list->data, sizeof(*(list->data)), list->print);
     list = NULL;
     return dequeued;
   }
@@ -74,7 +74,7 @@ genericListElement* dequeue(genericListElement* list) {
   }
 
   // Creates a new element with the same values as the tail element.
-  genericListElement* dequeued = createEl(current->next->data, sizeof(*(current->next->data)));
+  genericListElement* dequeued = createEl(current->next->data, sizeof(*(current->next->data)), current->next->print);
 
   deleteAfter(current);
   return dequeued;
@@ -113,8 +113,8 @@ void traverse(genericListElement* start){
 
 //Inserts a new element after the given el
 //Returns the pointer to the new element
-genericListElement* insertAfter(genericListElement* el, void* data, size_t size){
-  genericListElement* newEl = createEl(data, size);
+genericListElement* insertAfter(genericListElement* el, void* data, size_t size, printData print){
+  genericListElement* newEl = createEl(data, size, print);
   genericListElement* next = el->next;
   newEl->next = next;
   el->next = newEl;
