@@ -14,5 +14,6 @@ void testGenericness();
 void printInt(void* intToPrint);
 void printChar(void* charToPrint);
 void printDouble(void* doubleToPrint);
+void printString(void* stringToPrint);
 
 #endif
