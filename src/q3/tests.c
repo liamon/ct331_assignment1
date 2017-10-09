@@ -18,17 +18,17 @@ void printTestResults(testFunction test, char* testDescription) {
 }
 
 void printInt(void* intToPrint) {
-  printf("%d\n", intToPrint);
+  printf("%d\n", *(int*)intToPrint);
 }
 
 void printChar(void* charToPrint) {
-  printf("%c\n", charToPrint);
+  printf("%c\n", *(char*)charToPrint);
 }
 
 void printFloat(void* floatToPrint) {
-  printf("%f\n", floatToPrint);
+  printf("%f\n", *(float*)floatToPrint);
 }
 
 void printDouble(void* doubleToPrint) {
-  printf("%lf\n", doubleToPrint);
+  printf("%lf\n", *(double*)doubleToPrint);
 }
