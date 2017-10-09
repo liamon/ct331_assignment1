@@ -33,13 +33,9 @@ genericListElement* pop(genericListElement** list) {
   }
 
   genericListElement* head = *list;
-  // Create a new element with the same values as the first element.
-  genericListElement* poppedElement = createEl(head->data, sizeof(*(head->data)), head->print);
   *list = head->next;
 
-  free(head->data);
-  free(head);
-  return poppedElement;
+  return head;
 }
 
 // Enqueue a new element onto the head of a list.
