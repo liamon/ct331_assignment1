@@ -142,5 +142,5 @@ int testPop() {
 
   listElement* testReturn = pop(&testList);
   return strcmp(testList->data, data1) == 0 && testList->next == NULL &&
-    strcmp(testReturn->data, data2) == 0 && testReturn->next == NULL;
+    strcmp(testReturn->data, data2) == 0 && testReturn->next == testList;
 }
