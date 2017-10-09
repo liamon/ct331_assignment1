@@ -48,10 +48,6 @@ void printChar(void* charToPrint) {
   printf("%c\n", *(char*)charToPrint);
 }
 
-void printFloat(void* floatToPrint) {
-  printf("%f\n", *(float*)floatToPrint);
-}
-
 void printDouble(void* doubleToPrint) {
   printf("%lf\n", *(double*)doubleToPrint);
 }

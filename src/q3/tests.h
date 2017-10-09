@@ -13,7 +13,6 @@ void testGenericness();
 
 void printInt(void* intToPrint);
 void printChar(void* charToPrint);
-void printFloat(void* floatToPrint);
 void printDouble(void* doubleToPrint);
 
 #endif
