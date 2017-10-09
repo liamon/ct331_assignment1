@@ -1,7 +1,13 @@
 #ifndef CT331_ASSIGNMENT_GENERIC_LINKED_LIST
 #define CT331_ASSIGNMENT_GENERIC_LINKED_LIST
 
-typedef struct listElementStruct listElement;
+typedef struct listElementStruct{
+  void* data;
+  printData print;
+  size_t size;
+  struct listElementStruct* next;
+} listElement;
+
 typedef void (*printData)(void*); // Function pointer.
 
 // Returns the number of elements in a linked list.
