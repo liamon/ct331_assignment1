@@ -62,7 +62,7 @@ listElement* dequeue(listElement* list) {
     listElement* dequeued = list;
     list = NULL;
     return dequeued;
-  }
+    }
   listElement* current = list;
   // This will leave current at the second-last element.
   while (current->next->next != NULL) {
