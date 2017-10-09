@@ -33,8 +33,6 @@ listElement* pop(listElement** list) {
   }
 
   listElement* head = *list;
-  // Create a new element with the same values as the first element.
-//  listElement* poppedElement = createEl(head->data, sizeof(*(head->data)));
   *list = head->next;
 
   return head;
