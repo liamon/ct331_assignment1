@@ -88,14 +88,15 @@ genericListElement* createEl(void* data, size_t size, printData print) {
     //malloc has had an error
     return NULL; //return NULL to indicate an error.
   }
-  void* dataPointer = malloc(sizeof(void*)*size);
+  // The next line originally assumed data is an array pointer, which is not generic
+  void* dataPointer = malloc(size);
   if(dataPointer == NULL){
     //malloc has had an error
     free(e); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
   }
   e->print = print;
-  memmove(dataPointer, data, sizeof(void*) * size);
+  memmove(dataPointer, data, size);
   e->data = dataPointer;
   e->size = size;
   e->next = NULL;
