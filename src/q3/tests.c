@@ -8,7 +8,7 @@ void runTests(){
 
   printTestResults(&testEnqueueAndPush, "enqueue() and push()");
   printTestResults(&testPopFromEmptyList, "Popping from an empty list");
-  printTestResults(&testPop, "Popping from a list of length >= 1");
+  printTestResults(&testPopFromLongerList, "Popping from a longer list");
   
   testGenericness();
 
@@ -43,12 +43,20 @@ int testPopFromEmptyList() {
   return empty == NULL && popped == NULL;
 }
 
-int testPop() {
+int testPopFromLongerList() {
   char colon = ':';
   genericListElement* testList = createEl(&colon, sizeof(char), &printChar);
   genericListElement* popped = pop(&testList);
   return *((char*) popped->data) == colon && popped->next == NULL &&
     testList == NULL;
+}
+
+int testDequeueFromEmptyList() {
+  return 0;
+}
+
+int testDequeueFromLongerList() {
+  return 0;
 }
 
 // I can't really tests the print versions with a boolean since their return

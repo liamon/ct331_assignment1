@@ -11,7 +11,9 @@ void printTestResults(testFunction test, char* testDescription);
 // The actual tests:
 int testEnqueueAndPush();
 int testPopFromEmptyList();
-int testPop();
+int testPopFromLongerList();
+int testDequeueFromEmptyList();
+int testDequeueFromLongerList();
 void testGenericness();
 //
 // These are printData variables:
