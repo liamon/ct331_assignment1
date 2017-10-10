@@ -9,6 +9,8 @@ void runTests(){
   printTestResults(&testEnqueueAndPush, "enqueue() and push()");
   printTestResults(&testPopFromEmptyList, "Popping from an empty list");
   printTestResults(&testPopFromLongerList, "Popping from a longer list");
+  printTestResults(&testDequeueFromEmptyList, "Dequeueing from an empty list)");
+  printTestResults(&testDequeueFromLongerList, "Dequeueing from a longer list");
   
   testGenericness();
 
@@ -23,7 +25,7 @@ void printTestResults(testFunction test, char* testDescription) {
   }
 }
 
-int testEnqueueAndPush() { // enqueue() just calls push().
+int testEnqueueAndPush() { // enqueue() just calls push(), so this tests both.
   genericListElement* list = NULL;
   int testInt = 3891;
   enqueue(&list, &testInt, sizeof(int), &printInt);
@@ -52,11 +54,22 @@ int testPopFromLongerList() {
 }
 
 int testDequeueFromEmptyList() {
-  return 0;
+  genericListElement* empty = NULL;
+  genericListElement* testReturn = dequeue(empty);
+  return empty == NULL && testReturn == NULL;
 }
 
 int testDequeueFromLongerList() {
-  return 0;
+  // Note that I have designed this test to avoid triggering the bug that
+  // occurs when someone tries to dequeue a list of length 1...
+  int testInt = 31;
+  char testChar = '\\'; // Backslash has to be escaped with another backslash.
+  genericListElement* list = createEl(&testInt, sizeof(int), &printInt);
+  enqueue(&list, &testChar, sizeof(char), &printChar);
+  genericListElement* dequeued = dequeue(list);
+  
+  return *((char*) list->data) == testChar && list->next == NULL &&
+    *((int*) dequeued->data) == testInt && dequeued->next == NULL;
 }
 
 // I can't really tests the print versions with a boolean since their return
