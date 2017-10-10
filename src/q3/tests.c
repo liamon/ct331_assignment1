@@ -22,7 +22,7 @@ void printTestResults(testFunction test, char* testDescription) {
 
 // sizeof(string) will just return the size of the pointer/address, so I have
 // to use strlen in the tests below. strlen ignores '\0', so I have to + 1 to
-// include it. chars are one byte long, so I do not have to multiply this by anything.
+// make sure it is put back in again.
 
 
 int testPush() {
@@ -30,7 +30,7 @@ int testPush() {
   int testInt = 3891;
   push(&list, &testInt, sizeof(int), &printInt);
   char* testString = "A test.";
-  push(&list, &testString, strlen(testString) + 1, &printString);
+  push(&list, &testString, (strlen(testString) + 1) * sizeof(char), &printString);
 
   if (strcmp((char*) list->data, testString) != 0) {
     puts((char*) list->data); // TODO Fix this.
@@ -68,7 +68,7 @@ void testGenericness() {
 
   char* string = "This is a test.";
   printf("Expected: %s\n", string);
-  push(&list, &string, strlen(string) + 1, &printString);
+  push(&list, &string, (strlen(string) + 1) * sizeof(char), &printString);
   printf("Actual: ");
   list->print(list->data);
 }
