@@ -6,7 +6,7 @@
 void runTests(){
   printf("Tests running...\n\n");
 
-  printTestResults(&testPush, "push()");
+  printTestResults(&testEnqueueAndPush, "enqueue() and push()");
   testGenericness();
 
   printf("\nTests complete.\n");
@@ -20,12 +20,12 @@ void printTestResults(testFunction test, char* testDescription) {
   }
 }
 
-int testPush() {
+int testEnqueueAndPush() { // enqueue() just calls push().
   genericListElement* list = NULL;
   int testInt = 3891;
-  push(&list, &testInt, sizeof(int), &printInt);
+  enqueue(&list, &testInt, sizeof(int), &printInt);
   double testDouble = -47.9375;
-  push(&list, &testDouble, sizeof(double), &printDouble);
+  enqueue(&list, &testDouble, sizeof(double), &printDouble);
   
   // I was unable to get comparisons of function pointers to work properly, as
   // dereferenced function pointers are automatically converted to pointers.

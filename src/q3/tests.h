@@ -9,7 +9,7 @@ void runTests();
 void printTestResults(testFunction test, char* testDescription);
 //
 // The actual tests:
-int testPush();
+int testEnqueueAndPush();
 void testGenericness();
 //
 // These are printData variables:
