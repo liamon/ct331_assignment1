@@ -7,6 +7,9 @@ void runTests(){
   printf("Tests running...\n\n");
 
   printTestResults(&testEnqueueAndPush, "enqueue() and push()");
+  printTestResults(&testPopFromEmptyList, "Popping from an empty list");
+  printTestResults(&testPop, "Popping from a list of length >= 1");
+  
   testGenericness();
 
   printf("\nTests complete.\n");
@@ -32,6 +35,20 @@ int testEnqueueAndPush() { // enqueue() just calls push().
   // See https://stackoverflow.com/a/2795596
   return *((double*) list->data) == testDouble &&
     *((int*) list->next->data) == testInt && list->next->next == NULL;
+}
+
+int testPopFromEmptyList() {
+  genericListElement* empty = NULL;
+  genericListElement* popped = pop(&empty);
+  return empty == NULL && popped == NULL;
+}
+
+int testPop() {
+  char colon = ':';
+  genericListElement* testList = createEl(&colon, sizeof(char), &printChar);
+  genericListElement* popped = pop(&testList);
+  return *((char*) popped->data) == colon && popped->next == NULL &&
+    testList == NULL;
 }
 
 // I can't really tests the print versions with a boolean since their return

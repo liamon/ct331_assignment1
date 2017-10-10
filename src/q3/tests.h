@@ -10,6 +10,8 @@ void printTestResults(testFunction test, char* testDescription);
 //
 // The actual tests:
 int testEnqueueAndPush();
+int testPopFromEmptyList();
+int testPop();
 void testGenericness();
 //
 // These are printData variables:
