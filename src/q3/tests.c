@@ -29,17 +29,13 @@ int testPush() {
   genericListElement* list = NULL;
   int testInt = 3891;
   push(&list, &testInt, sizeof(int), &printInt);
-  char* testString = "A test.";
-  push(&list, &testString, (strlen(testString) + 1) * sizeof(char), &printString);
-
-  if (strcmp((char*) list->data, testString) != 0) {
-    puts((char*) list->data); // TODO Fix this.
-  }
+  double testDouble = -47.9375;
+  push(&list, &testDouble, sizeof(double), &printDouble);
   
   // I was unable to get comparisons of function pointers to work properly, as
   // dereferenced function pointers are automatically converted to pointers.
   // See https://stackoverflow.com/a/2795596
-  return strcmp(list->data, testString) == 0 &&
+  return *((double*) list->data) == testDouble &&
     *((int*) list->next->data) == testInt && list->next->next == NULL;
 }
 
