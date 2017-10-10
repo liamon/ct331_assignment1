@@ -6,7 +6,7 @@
 void runTests(){
   printf("Tests running...\n\n");
 
-  printTestResults(&testPush, "Push()");
+  printTestResults(&testPush, "push()");
   testGenericness();
 
   printf("\nTests complete.\n");
@@ -19,11 +19,6 @@ void printTestResults(testFunction test, char* testDescription) {
     printf("%s: FAILURE\n", testDescription);
   }
 }
-
-// sizeof(string) will just return the size of the pointer/address, so I have
-// to use strlen in the tests below. strlen ignores '\0', so I have to + 1 to
-// make sure it is put back in again.
-
 
 int testPush() {
   genericListElement* list = NULL;
@@ -62,6 +57,9 @@ void testGenericness() {
   printf("Actual: ");
   list->print(list->data);
 
+  // sizeof(string) will just return the size of the pointer/address, so I have
+  // to use strlen in the test below. strlen ignores '\0', so I have to + 1 to
+  // make sure it is put back in again.
   char* string = "This is a test.";
   printf("Expected: %s\n", string);
   push(&list, &string, (strlen(string) + 1) * sizeof(char), &printString);
